@@ -54,3 +54,31 @@ if results_shown == 0:
 
 st.markdown("---")
 st.markdown("✅ Thank you for using the Question Similarity Finder!")
+st.markdown(
+    """
+    <style>
+        .floating-footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000000;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 100;
+            font-size: 14px;
+        }
+        .floating-footer a {
+            text-decoration: none;
+            color: #0A66C2;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="floating-footer">
+        🚀 Built with 💻 by <strong>Akash</strong> |
+        <a href="https://www.linkedin.com/in/akash-ch/" target="_blank">LinkedIn</a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
