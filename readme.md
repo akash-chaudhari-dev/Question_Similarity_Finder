@@ -1,94 +1,122 @@
-Live At : https://question-similarity-finder.onrender.com
+🧠 Question Similarity Finder
 
-# 🧠 Question Similarity Finder
+> An intelligent semantic search app that finds questions similar to yours using state-of-the-art NLP models.
 
-Welcome to the **Question Similarity Finder**, a simple yet powerful web app built in Python using **Streamlit** and **scikit-learn**. This tool allows you to explore and discover similar questions based on their tags or categories using a content-based recommendation system.
+📍 **Live Demo**: [https://question-similarity-finder.onrender.com](https://question-similarity-finder.onrender.com)
 
-## ✨ Features
+---
 
-- ✅ Select any question by ID
-- ✅ Get top 5 most similar questions based on tags
-- ✅ Interactive and easy-to-use web interface
-- ✅ Uses cosine similarity with bag-of-words (CountVectorizer)
-- ✅ Built with Python, Pandas, scikit-learn, and Streamlit
+## ✨ What's New (v1.1)
 
-## 📷 Screenshots
+🚀 Major update with smarter, faster, and more user-friendly features:
 
-| Choose Question  | See Similar Questions |
-|------------------|-----------------------|
-| ![Choose](./assets/image.png) ![Results](./assets/image1.png)
+* ✅ **Free-form user question input**
+* ✅ Upgraded to **semantic similarity** using `SentenceTransformer`
+* ✅ Trained on **\~1000 questions**
+* ✅ Added **automatic fallback tools**:
+
+  * 📦 `Fetch_Data` → loads new data if missing
+  * 🧹 `Clean_Data` → auto-fixes corrupted CSVs
+* 🖥️ CLI support in progress for developer review & debugging
+* 📂 Clean modular folder structure with reusable `Tools/`
+
+---
+
+## 🖼️ Preview
+
+| 👇 Input your Question       | 📊 See Similar Questions       |
+| ---------------------------- | ------------------------------ |
+| ![input](./assets/image.png) | ![output](./assets/image1.png) |
+
+---
+
+## 🗂️ Project Structure
 
 ```
-project/
-├── data.csv                # Main dataset (Questions + Categories)
-├── app.py                  # Main Streamlit app
-├── README.md               # This readme file
-├── requirements.txt        # Required packages
-└── screenshots/            # Optional folder for UI screenshots
+Question_Similarity_Finder/
+├── main.py                     # Main Streamlit app
+├── data/                       # Contains cleaned/fetched CSV
+│   └── data.csv
+├── Tools/                      # Utility modules
+│   ├── Clean_data.py
+│   └── Fetch_data.py
+├── assets/                     # UI screenshots
+├── requirements.txt
+└── README.md
 ```
 
-## 📦 Requirements
+---
 
-Make sure you have Python 3.7+ installed.
+## 🔧 Tech Stack
 
-Install required libraries:
+* Python
+* Streamlit
+* pandas
+* torch + sentence-transformers (`all-MiniLM-L6-v2`)
+
+---
+
+## 📦 Installation
+
 ```bash
+git clone https://github.com/your-username/Question_Similarity_Finder.git
+cd Question_Similarity_Finder
 pip install -r requirements.txt
 ```
 
-**requirements.txt**
-```
-pandas
-scikit-learn
-streamlit
-```
+---
 
-## ▶️ Running the App
-
-To start the web app, use:
+## ▶️ Run the App
 
 ```bash
-streamlit run app.py
+streamlit run main.py
 ```
 
-Once it starts, it will open in your default browser at:
+---
+
+## 📁 Data Format
+
+CSV file: `data/data.csv`
+
+| Question                        | Category    | Difficulty | Answer       |
+| ------------------------------- | ----------- | ---------- | ------------ |
+| What is Python?                 | Programming | Easy       | Python is... |
+| Difference between SQL & NoSQL? | Databases   | Medium     | SQL is...    |
+
+---
+
+## 🔍 How It Works
+
+1. **Embeddings** are generated using `SentenceTransformer`
+2. **Cosine similarity** compares your input with all questions
+3. **Top 5 similar questions** are shown with scores and categories
+
+---
+
+## 🧪 CLI Mode (In Progress)
+
+Developers can soon run:
+
+```bash
+python cli.py --question "What is backpropagation?"
 ```
-http://localhost:8501/
-```
 
-## 📊 About Your Data (`data.csv`)
+To test model performance from the terminal.
 
-The app expects a CSV file named `data.csv` with these two columns:
+---
 
-| Column Name | Description                        |
-|-------------|------------------------------------|
-| Question    | The question text/title            |
-| Category    | Tags or keywords related to the question (separated by space) |
+## 🛠️ Future Work
 
-### Example:
+* ✅ CLI Utilities for developers
+* 🔍 Keyword highlighting in results
+* 🌐 API backend for integration
+* 📈 Model selection toggle
+* 👤 User history & bookmarking
 
-```csv
-Question,Category
-"What is Python?",python basics
-"Difference between SQL and NoSQL?",database sql
-"DBMS normalization levels",dbms normalization
-...
-```
-
-## 🔧 How It Works
-
-1. **Text Vectorization:** Tags from the `Category` field are converted to vectors using `CountVectorizer`
-2. **Similarity Calculation:** Cosine similarity is calculated between question vectors
-3. **Recommendation:** The top 5 most similar questions (with non-zero scores) are displayed
+---
 
 ## 🙋‍♂️ Author
 
-💡 Built by a 3rd-year student exploring Python, ML, and practical web development projects ❤️
+Made with ❤️ by **Akash**, a 3rd-year Data Science & AI student chasing GATE AIR 1.
 
-## 🛠️ Future Ideas
-
-- Use question **text or title** instead of just tags
-- Add search/filter functionality
-- Add user login/logout or personalized history
-- Connect to a live database or backend API
-- Add a download/print feature for results
+🔗 [LinkedIn](https://www.linkedin.com/in/akash-ch/)
