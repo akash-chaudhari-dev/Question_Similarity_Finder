@@ -6,7 +6,6 @@ from pathlib import Path
 from Tools.Clean_data import Clean_Data
 from Tools.Fetch_data import Fetch_Data
 
-
 def load_data(csv_path):
     try:
         df = pd.read_csv(csv_path)
@@ -31,7 +30,11 @@ if not csv_path.exists():
     csv_path = Fetch_Data(QUESTIONS=100,BATCH_SIZE=10)
 
 # Initialize the SentenceTransformer model
-model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cpu')
+# model for non CUDA based PC's
+# model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2', device='cpu')
+
+# for Cuda based PC
+model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # Set the title
 st.title("🧠 Question Similarity Finder")
@@ -51,6 +54,8 @@ question_embeddings = model.encode(df['Question'].tolist(), convert_to_tensor=Tr
 st.subheader("🔍 Write a Question")
 user_question = st.text_input("Enter question :", placeholder="e.g., Who is the CEO of Apple?", value="Who is the CEO of Apple?")
 
+if not user_question:
+    user_question = "Who is the CEO of Apple?"
 
 if user_question:
     user_embedding = model.encode(user_question, convert_to_tensor=True)
