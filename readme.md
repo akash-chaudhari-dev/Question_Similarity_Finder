@@ -6,7 +6,7 @@
 
 ---
 
-## ✨ What's New (v1.1)
+## ✨ What's New (v1.1.1)
 
 🚀 Major update with smarter, faster, and more user-friendly features:
 
